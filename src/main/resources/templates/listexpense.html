@@ -29,8 +29,8 @@
                     <td th:text="${expense.date}"></td>
                     <td th:text="${expense.description}"></td>
                     <td>
-                        <a th:href="@{/expenses/update/{id}(id=${expense.id})}">Update |</a>
-                        <a th:href="@{/expenses/delete/{id}(id=${expense.id})}">Delete</a>
+                        <a th:href="@{/expenses/update-expense/{id}(id=${expense.id})}">Update |</a>
+                        <a th:href="@{/expenses/delete-expense/{id}(id=${expense.id})}">Delete</a>
                     </td>
                 </tr>
             </tbody>

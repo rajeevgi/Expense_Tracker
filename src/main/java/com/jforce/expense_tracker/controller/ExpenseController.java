@@ -1,7 +1,5 @@
 package com.jforce.expense_tracker.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jforce.expense_tracker.entity.Expense;
-import com.jforce.expense_tracker.entity.User;
 import com.jforce.expense_tracker.service.ExpenseService;
 import com.jforce.expense_tracker.service.UserService;
 
@@ -27,43 +24,40 @@ public class ExpenseController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/add")
+    @GetMapping("/add-expense")
     public String addExpensePage(Model model) {
-        model.addAttribute("expense", new Expense());
+        model.addAttribute("Expense", new Expense());
         return "addExpense";
     }
 
-    @PostMapping("/add")
-    public String addExpense(@ModelAttribute Expense expense, User user) {
-        expense.setUser(user);
+    @PostMapping("/add-expense")
+    public String addExpense(@ModelAttribute Expense expense) {
         expenseService.saveExpense(expense);
-        return "redirect:/expenses/list";
+        return "redirect:/listexpense";
     }
 
-    @GetMapping("/list")
-    public String listExpenses(Model model, User user) {
-        List<Expense> expenses = expenseService.findExpensesByUser(user);
-        model.addAttribute("expenses", expenses);
-        return "listexpenses";
+    @GetMapping("/list-expense")
+    public String listExpensePage(Model model) {    
+        model.addAttribute("expenses", expenseService.getAllExpenses());
+        return "listexpense";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/update-expense/{id}")
     public String updateExpensePage(@PathVariable int id, Model model) {
         Expense expense = expenseService.findById(id).orElseThrow(() -> new RuntimeException("Expense not found"));
         model.addAttribute("expense", expense);
         return "updateexpense";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateExpense(@PathVariable int id, @ModelAttribute Expense expense) {
-        expense.setId(id);
+    @PostMapping("/update-expense")
+    public String updateExpense(@ModelAttribute Expense expense) {
         expenseService.saveExpense(expense);
-        return "redirect:/expenses/list";
+        return "redirect:/listexpense";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete-expense/{id}")
     public String deleteExpense(@PathVariable int id) {
         expenseService.deleteExpense(id);
-        return "redirect:/expenses/list";
+        return "redirect:/list-expense";
     }
 }

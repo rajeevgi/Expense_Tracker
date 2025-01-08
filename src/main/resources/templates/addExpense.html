@@ -9,7 +9,7 @@
   <body>
     <div class="container justify-content-center align-items-center pt-3 w-50">
 
-        <form th:action="@{/expenses/addExpense}" th:object="${Expense}" method="post">
+        <form th:action="@{/add-expense}" th:object="${Expense}" method="post">
             <div class="mb-3">
                 <h2>Add Expenses</h2>
                 <label for="name" class="form-label">Expense Name</label>
@@ -28,7 +28,8 @@
                 <input type="text" th:field="*{description}" class="form-control" id="desc" required>
             </div>
 
-            <button type="submit" class="btn btn-success">Add Expense</button>
+            <!-- <button type="submit" class="btn btn-success">Add Expense</button> -->
+             <a th:href="@{/expenses/add-expense}" class="btn btn-success">Save</a>
         </form>
 
     </div>

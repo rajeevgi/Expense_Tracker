@@ -12,20 +12,20 @@
 <body>
     <div class="container justify-content-center align-items-center w-50 pt-3">
 
-        <form th:action="@{/User/index}" th:object="${User}" method="post">
+        <form th:action="@{/login}" th:object="${User}" method="post">
             <div class="mb-3">
                 <h2>Login Page</h2>
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
 
-            <!-- <button type="submit" class="btn btn-primary">Login</button> -->
-             <a th:href="@{/User/index}" class="btn btn-warning">Login</a>
-            <br>
+            <!-- <button type="submit" class="btn btn-primary">Login</button>     -->
+             <a th:href="@{/User/homepage}" class="btn btn-warning">Login</a>
+            <br><br>
             <a th:href="@{/User/register}">New User?Register here</a>
         </form>
 

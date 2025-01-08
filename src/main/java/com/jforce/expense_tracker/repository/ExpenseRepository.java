@@ -11,6 +11,6 @@ import com.jforce.expense_tracker.entity.User;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 
-    List<Expense> findByUser(User user);
+    // List<Expense> findByUser(User user);
 
 }
